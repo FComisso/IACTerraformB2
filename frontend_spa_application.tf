@@ -3,7 +3,7 @@ resource "azuread_application" "frontend_spa_application" {
     owners           = [data.azuread_client_config.current.object_id]
 
     single_page_application {
-        redirect_uris = ["https://oidcdebugger.com/debug"]
+        redirect_uris = ["https://brave-sea-0d2dc570f.5.azurestaticapps.net/"]
     }
 
     required_resource_access {
