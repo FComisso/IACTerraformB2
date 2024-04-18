@@ -32,3 +32,4 @@ resource "azuread_application_pre_authorized" "frontend_spa_preauthorized" {
     random_uuid.b2_api_gateway_read_scope_id.result
   ]
 }
+

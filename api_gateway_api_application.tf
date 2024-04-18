@@ -60,3 +60,4 @@ resource "azuread_service_principal" "b2_api_gateway_sp" {
   owners                       = [data.azuread_client_config.current.object_id]
   tags                         = ["b2_api_gateway", "api"]
 }
+

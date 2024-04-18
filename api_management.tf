@@ -1,5 +1,5 @@
-resource "azurerm_api_management" "apim_service" {
-      provider = azurerm.azurerm_profile
+/* resource "azurerm_api_management" "apim_service" {
+  provider = azurerm.azurerm_profile
   name                = "${var.prefix}-apim-service"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -44,4 +44,4 @@ resource "azurerm_api_management" "apim_service" {
     </policies>
 XML
   }
-} 
+}  */

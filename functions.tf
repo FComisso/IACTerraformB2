@@ -30,43 +30,47 @@ resource "azurerm_linux_function_app" "example" {
 
   site_config {
     application_stack {
-      python_version = "3.9"
+      python_version = "3.11"
     }
   }
 }
 
-resource "azurerm_function_app_function" "example" {
-  provider        = azurerm.azurerm_profile
-  name            = "example-python-function"
-  function_app_id = azurerm_linux_function_app.example.id
-  language        = "Python"
-  file {
-    name    = "__init__.py"
-    content = file("./SampleApp/PythonSampleApp/__init__.py")
-  }
-  test_data = file("./SampleApp/PythonSampleApp/sample.dat")
-  #  test_data = jsonencode({
-  #    "name" = "Azure"
-  #  })
-  config_json = file("./SampleApp/PythonSampleApp/function.json")
-  #  config_json = jsonencode({
-  #    "scriptFile" = "__init__.py"
-  #    "bindings" = [
-  #      {
-  #        "authLevel" = "anonymous"
-  #        "direction" = "in"
-  #        "methods" = [
-  #          "get",
-  #          "post",
-  #        ]
-  #        "name" = "req"
-  #        "type" = "httpTrigger"
-  #      },
-  #      {
-  #        "direction" = "out"
-  #        "name"      = "$return"
-  #        "type"      = "http"
-  #      },
-  #    ]
-  #  })
-} 
+output "site_credential" {
+  value = nonsensitive(azurerm_linux_function_app.example.site_credential)
+}
+
+# resource "azurerm_function_app_function" "example" {
+#   provider        = azurerm.azurerm_profile
+#   name            = "example-python-function"
+#   function_app_id = azurerm_linux_function_app.example.id
+#   language        = "Python"
+#   file {
+#     name    = "__init__.py"
+#     content = file("./SampleApp/PythonSampleApp/__init__.py")
+#   }
+#   test_data = file("./SampleApp/PythonSampleApp/sample.dat")
+#   #  test_data = jsonencode({
+#   #    "name" = "Azure"
+#   #  })
+#   config_json = file("./SampleApp/PythonSampleApp/function.json")
+#   #  config_json = jsonencode({
+#   #    "scriptFile" = "__init__.py"
+#   #    "bindings" = [
+#   #      {
+#   #        "authLevel" = "anonymous"
+#   #        "direction" = "in"
+#   #        "methods" = [
+#   #          "get",
+#   #          "post",
+#   #        ]
+#   #        "name" = "req"
+#   #        "type" = "httpTrigger"
+#   #      },
+#   #      {
+#   #        "direction" = "out"
+#   #        "name"      = "$return"
+#   #        "type"      = "http"
+#   #      },
+#   #    ]
+#   #  })
+# } 
