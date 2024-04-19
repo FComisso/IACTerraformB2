@@ -1,4 +1,4 @@
-resource "azuread_application" "b2_backend_user_api_application" {
+/* resource "azuread_application" "b2_backend_user_api_application" {
     
     display_name     = "b2-backend-user-api"
     identifier_uris  = ["api://b2backenduserapi"]
@@ -29,4 +29,4 @@ resource "azuread_service_principal" "b2_backend_user_sp" {
   app_role_assignment_required = false
   owners                       = [data.azuread_client_config.current.object_id]
   tags                         = ["b2_backend_user_", "api"]
-}
+} */
