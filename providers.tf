@@ -8,7 +8,16 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=2.95.0"
     }
+    time = {
+      source = "hashicorp/time"
+      # Setting the provider version is a strongly recommended practice
+       version = "0.11.1"
+    }
   }
+}
+
+provider "time" {
+  # Configuration options
 }
 
 provider "azuread" {

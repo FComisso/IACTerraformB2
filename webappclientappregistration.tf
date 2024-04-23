@@ -48,3 +48,15 @@ resource "azuread_application_pre_authorized" "frontend_spa_preauthorized_b2" {
     random_uuid.msal_api_b2_gateway_write_scope_id.result
   ]
 }
+
+
+resource "time_rotating" "frontend_app_spa" {
+  rotation_days = 1825
+}
+
+resource "azuread_application_password" "frontend_app_spa" {
+  application_id = azuread_application.frontend_app_spa.id
+  rotate_when_changed = {
+    rotation = time_rotating.frontend_app_spa.id
+  }
+}

@@ -7,3 +7,6 @@ data "azuread_user" "jane_user" {
 data "azuread_user" "john_user" {
   user_principal_name = "m.varese@clustermwp.onmicrosoft.com"
 }
+data "azuread_user" "giuriato_user" {
+  user_principal_name = "t.giuriato@clusterMWP.onmicrosoft.com"
+}

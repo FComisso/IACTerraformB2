@@ -9,6 +9,15 @@ resource "azurerm_storage_account" "example" {
   provider                  = azurerm.azurerm_profile
 }
 
+
+
+resource "azurerm_application_insights" "ai" {
+  name                = "${var.prefix}ai"
+  location            =  azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  application_type    = "web"
+}
+
 resource "azurerm_service_plan" "example" {
   name                = "${var.prefix}-sp"
   location            = azurerm_resource_group.rg.location
@@ -28,9 +37,17 @@ resource "azurerm_linux_function_app" "example" {
   storage_account_name       = azurerm_storage_account.example.name
   storage_account_access_key = azurerm_storage_account.example.primary_access_key
 
+
+  app_settings = {
+    FUNCTIONS_WORKER_RUNTIME = "python"
+    APPINSIGHTS_INSTRUMENTATIONKEY = "${azurerm_application_insights.ai.instrumentation_key}"
+  }
   site_config {
     application_stack {
       python_version = "3.11"
+    }
+    cors {      
+      allowed_origins = ["https://localhost:5173"]
     }
   }
 }

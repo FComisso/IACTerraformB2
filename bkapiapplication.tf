@@ -90,3 +90,9 @@ resource "azuread_service_principal" "msal_api_b2_gateway" {
 }
 
 
+
+
+resource "azuread_application_password" "msal_api_b2_gateway" {
+  application_id = azuread_application.msal_api_b2_gateway.id
+  
+}

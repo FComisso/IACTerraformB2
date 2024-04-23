@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "demob2skyfr-python-example-app",
+        "description": "Import from \"demob2skyfr-python-example-app\" Function App",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://demob2skyfr-apim-service-3.azure-api.net/demob2skyfr-python-example-app"
+        }
+    ],
+    "paths": {
+        "/ask": {
+            "post": {
+                "summary": "ask",
+                "operationId": "post-ask",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/check": {
+            "post": {
+                "summary": "check",
+                "operationId": "post-check",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/get_id": {
+            "get": {
+                "summary": "get_id",
+                "operationId": "get-get-id",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}

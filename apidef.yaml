@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: api-test-sky-openai-b2-v2
+  description: Import from "api-test-sky-openai-b2-v2" Function App
+  version: '1.0'
+servers:
+  - url: https://api-gateway-openai-b2.azure-api.net/api
+paths:
+  /http_trigger_eco:
+    post:
+      summary: http_trigger_eco
+      operationId: http-trigger-eco
+      responses:
+        '200':
+          description: 
+  /http_trigger:
+    post:
+      summary: http_trigger
+      operationId: http-trigger
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
