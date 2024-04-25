@@ -40,3 +40,23 @@ variable "open_api_spec_content_format" {
 variable "open_api_spec_content_value" {
   description = "The Content from which the API Definition should be imported. When a content_format of *-link-* is specified this must be a URL, otherwise this must be defined inline."
 }
+
+variable "max_throughput" {
+  type        = number
+  default     = 4000
+  description = "Cosmos db database max throughput"
+  validation {
+    condition     = var.max_throughput >= 4000 && var.max_throughput <= 1000000
+    error_message = "Cosmos db autoscale max throughput should be equal to or greater than 4000 and less than or equal to 1000000."
+  }
+  validation {
+    condition     = var.max_throughput % 100 == 0
+    error_message = "Cosmos db max throughput should be in increments of 100."
+  }
+}
+
+variable "cosmosdb_account_name" {
+  type        = string
+  default     = null
+  description = "Cosmos db account name"
+}

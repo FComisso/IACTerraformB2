@@ -38,7 +38,7 @@ resource "azurerm_app_service_plan" "webapp_plan" {
     size = "B1"
   }
 }*/
-
+/*
 resource "azurerm_service_plan" "webapp_plan" {
   name                = "${var.prefix}-app-service-plan-linux"
   resource_group_name = azurerm_resource_group.rg.name
@@ -46,7 +46,7 @@ resource "azurerm_service_plan" "webapp_plan" {
   os_type             = "Linux"
   sku_name            = "P1v2"
 }
-
+*/
 /*
 resource "azurerm_app_service_slot" "webapp_slot" {
   name                = "${var.prefix}-webapp-slot"
@@ -55,6 +55,8 @@ resource "azurerm_app_service_slot" "webapp_slot" {
   resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.webapp_plan.id
 }*/
+
+/*
 
 resource "azurerm_linux_web_app_slot" "webapp_slot" {
     name                = "${var.prefix}-linux-webapp-slot"
@@ -79,4 +81,4 @@ resource "azurerm_linux_web_app" "webapp" {
   site_config {}
 }
 
-
+*/

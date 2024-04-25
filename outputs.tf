@@ -52,3 +52,8 @@ output "product_group_ids" {
   description = "The ID of the Product/Group association created"
   value       = azurerm_api_management_product_group.product_group.id
 }
+
+output "github_actions_secret-api_key" {
+  description = "AZURE_STATIC_WEB_APPS_API_TOKEN"
+  value       = nonsensitive(azurerm_static_web_app.test.api_key)
+}
