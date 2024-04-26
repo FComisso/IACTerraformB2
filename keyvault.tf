@@ -135,6 +135,7 @@ output "sp_password" {
 }
 
 output "secret_value" {
+  description = "value for AZURECREDENTIALS"
   value = nonsensitive(azuread_application_password.example.value)
 }
 

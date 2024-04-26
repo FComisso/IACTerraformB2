@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://demob2skyfr-apim-service-3.azure-api.net/demob2skyfr-python-example-app"
+            "url": "https://demob2skyfr-apim-service-3.azure-api.net/api"
         }
     ],
     "paths": {
