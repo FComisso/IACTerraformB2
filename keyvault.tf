@@ -58,6 +58,17 @@ resource "azurerm_key_vault_secret" "example" {
 }
 
 
+# variable "sensitiveString" {
+#   type = string
+#   default = azurerm_linux_function_app.example.site_credential
+#   sensitive = true
+# }
+# resource "azurerm_key_vault_secret" "github" {
+#   name         = "AZURECREDENTIALS"
+#   value        = var.sensitiveString.value
+#   key_vault_id = azurerm_key_vault.example.id
+# }
+
 
 resource "azuread_application" "example" {
   display_name = "githubspb2app"

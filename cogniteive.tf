@@ -26,30 +26,45 @@ resource "azurerm_cognitive_account" "cognitive1" {
 
 # Cognitive Deployments 
 resource "azurerm_cognitive_deployment" "gpt-35-turbo" {
-  name                 = "gpt-35-turbo"
+  name                 = "chat"
   cognitive_account_id = azurerm_cognitive_account.cognitive1[0].id
   model {
     format = "OpenAI"
     name   = "gpt-35-turbo"
     version = "1106"
-    # 4 1106 perv
   }
   scale {
     type = "Standard"
   }
 }
 
-# resource "azurerm_cognitive_deployment" "gpt-4-preview" {
-#   name                 = "gpt-4-preview"
-#   cognitive_account_id = azurerm_cognitive_account.cognitive1[0].id
-#   model {
-#     format = "OpenAI"
-#     name   = "gpt-4-1106-preview"
-#   }
-#   scale {
-#     type = "Standard"
-#   }
-# }
+resource "azurerm_cognitive_deployment" "gpt-4-preview" {
+  name                 = "turbo4"
+  cognitive_account_id = azurerm_cognitive_account.cognitive1[0].id
+  model {
+    format = "OpenAI"
+    name   = "gpt-4"
+    version = "1106-Preview"
+  }
+
+  scale {
+    type = "Standard"
+  }
+} 
+
+resource "azurerm_cognitive_deployment" "text-embedding-ada-002" {
+  name                 = "ada"
+  cognitive_account_id = azurerm_cognitive_account.cognitive1[0].id
+  model {
+    format = "OpenAI"
+    name   = "text-embedding-ada-002"
+    version = "2"
+  }
+  
+  scale {
+    type = "Standard"
+  }
+} 
 
 resource "azurerm_private_endpoint" "example-pe01" {
   name                = "${var.prefix}-pe-openai-we"

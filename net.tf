@@ -20,7 +20,7 @@ resource "azurerm_subnet" "my_terraform_subnet_1" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
   address_prefixes     = ["10.0.1.0/24"]
-   service_endpoints = ["Microsoft.CognitiveServices"]
+  service_endpoints = ["Microsoft.CognitiveServices", "Microsoft.AzureCosmosDB"]
 }
 
 # Subnet 2
@@ -31,7 +31,7 @@ resource "azurerm_subnet" "my_terraform_subnet_2" {
   address_prefixes     = ["10.0.2.0/24"]
 
   delegation {
-    name = "example-delegation"
+    name = "delegation"
 
     service_delegation {
       name    = "Microsoft.Web/serverFarms"

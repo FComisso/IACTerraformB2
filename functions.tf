@@ -27,24 +27,57 @@ resource "azurerm_linux_function_app" "example" {
   storage_account_access_key = azurerm_storage_account.storage.primary_access_key
 
   # New flag to set public network access
-  #public_network_access_enabled = false
+  # public_network_access_enabled = false
 
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME = "python"
     APPINSIGHTS_INSTRUMENTATIONKEY = "${azurerm_application_insights.ai.instrumentation_key}"
   }
   site_config {
+
+    
     application_stack {
       python_version = "3.11"
     }
     cors {      
       allowed_origins = ["https://localhost:5173"]
     }
+
+/*     scm_ip_restriction {
+      action = "Deny"
+      priority = 100
+      ip_address = "0.0.0.0"
+    } */
+    ip_restriction {
+      name       = "Deny all access"
+      ip_address = "0.0.0.0/0"
+      action     = "Deny"
+      priority   = 1000
+    }
+    scm_ip_restriction {
+      name       = "Deny all access"
+      ip_address = "0.0.0.0/0"
+      action     = "Deny"
+      priority   = 1000
+    }
+    scm_ip_restriction {
+      action = "Allow"
+      ip_address = "${azurerm_api_management.apim_service.public_ip_addresses[0]}/32"
+      priority = 101
+      name = "API Management Access Only"
+    }
   }
 }
 resource "azurerm_app_service_virtual_network_swift_connection" "example" {
   app_service_id = azurerm_linux_function_app.example.id
   subnet_id      = azurerm_subnet.my_terraform_subnet_2.id
+
+  depends_on = [azurerm_subnet.my_terraform_subnet_2, azurerm_linux_function_app.example]
+  lifecycle {
+    ignore_changes = [
+      subnet_id,
+    ]
+  }
 }
 output "site_credential" {
   value = nonsensitive(azurerm_linux_function_app.example.site_credential)
